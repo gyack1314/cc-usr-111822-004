@@ -1,11 +1,9 @@
-# 推理机房指标分析
+# 推理机房扩容核算
 
-项目保存推理机房的来源版次，按资料取得时间比较单期指标并给出区域规则判断。evidence 保存来源，metrics 计算同口径偏离，context 解释当前区域规则，report 保存报告。现有实现尚不处理跨期与跨空间的综合分析。样本是合成数据。
+项目按来源版本保存业务资料，已有 traffic、capacity、billing 环节。已有时段用量、静态机池和电价估算，未把高峰期限、迁移约束与收入承诺一起用于扩容选择。
 
-Python 3.11 以上，在项目根目录执行：
+运行与检查：
 
     python -m unittest discover -s tests -v
-    python -m compileall -q apec_analysis tests
-    python -m apec_analysis.cli inspect data/example.json
-
-Dockerfile 可在 Linux 容器运行：docker build -t apec-analysis-004 .；docker run --rm apec-analysis-004。
+    python -m compileall -q compute_plan tests
+    python -m compute_plan.cli data/example.json
